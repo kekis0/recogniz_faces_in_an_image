@@ -15,6 +15,7 @@ import numpy as np
 from shutil import copyfile
 import shutil
 
+
 # Функция для сравнения лиц
 def compare_faces(known_face_encoding, face_encoding_to_check, tolerance=0.55):
     """
@@ -92,7 +93,7 @@ def recognize_faces_in_folder(folder_path, output_folder, known_faces):
             face_locations, face_encodings
         ):
             face_data = {
-                "name": os.path.abspath(image_path),  # Используйте абсолютный путь
+                "name": os.path.abspath(image_path),
                 "encoding": face_encoding.tolist(),
             }
             recognized_faces.append(face_data)
@@ -109,13 +110,15 @@ def recognize_faces_in_folder(folder_path, output_folder, known_faces):
 
         # Сохранение параметров каждого распознанного лица в JSON
         save_path = os.path.join(
-            output_folder, f"recognized_faces_{image_file.replace('.', '_')}.json"
+            output_folder,
+            f"recognized_faces_{image_file.replace('.', '_')}.json"
         )
         with open(save_path, "w") as json_file:
             json_file.write(json.dumps(recognized_faces, indent=2))
 
         # Сохранение результата изображения с выделенными лицами
-        pil_image.save(os.path.join(output_folder, f"recognized_faces_{image_file}"))
+        pil_image.save(os.path.join(output_folder,
+                                    f"recognized_faces_{image_file}"))
 
         # Вызов функции для сравнения и сохранения похожих лиц
         save_similar_faces(known_faces, output_folder, recognized_faces)
@@ -153,7 +156,8 @@ for known_face_file in known_face_files:
         for face in known_face_data:
             if "encoding" in face:
                 known_faces.append(
-                    {"encoding": np.array(face["encoding"]), "name": face["name"]}
+                    {"encoding": np.array(face["encoding"]),
+                     "name": face["name"]}
                 )
             else:
                 print(f"Invalid format in {known_face_file}. Skipping...")
@@ -164,3 +168,4 @@ output_folder = "recognized"
 
 # Распознавание лиц во всех фотографиях из папки
 recognize_faces_in_folder(folder_path, output_folder, known_faces)
+
