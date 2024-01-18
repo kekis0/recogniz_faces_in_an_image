@@ -11,7 +11,8 @@ def test_pep8_compliance():
     try:
         # Запуск Flake8 для текущего рабочего каталога
         result = subprocess.run(
-            ["flake8"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+            ["flake8"], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            text=True
         )
 
         # Проверка кода завершения
@@ -23,7 +24,7 @@ def test_pep8_compliance():
             print(result.stdout)
 
     except FileNotFoundError:
-        print("Flake8 не установлен. Установите, используя 'pip install flake8'.")
+        print("Установите,используя 'pip install flake8'.")
 
 
 if __name__ == "__main__":
