@@ -162,9 +162,6 @@ for known_face_file in known_face_files:
             else:
                 print(f"Invalid format in {known_face_file}. Skipping...")
 
-# Путь к папке с изображениями
-folder_path = "faces"
-output_folder = "recognized"
 
 # Распознавание лиц во всех фотографиях из папки
 recognize_faces_in_folder(folder_path, output_folder, known_faces)
